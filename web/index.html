@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quest WebXR Bridge</title>
+  <style>
+    :root {
+      --bg: #15181c;
+      --panel: #1e2329;
+      --text: #e6e8eb;
+      --muted: #9aa3ad;
+      --ok: #4caf7d;
+      --warn: #d9a441;
+      --bad: #d9534f;
+      --border: #2e353d;
+    }
+    body {
+      margin: 0;
+      padding: 16px;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.4 system-ui, sans-serif;
+    }
+    h1 { font-size: 22px; margin: 0 0 12px; }
+    h2 { font-size: 16px; margin: 0 0 8px; color: var(--muted); font-weight: 600; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+    }
+    table { border-collapse: collapse; width: 100%; }
+    td { padding: 3px 8px 3px 0; vertical-align: top; }
+    td:first-child { color: var(--muted); white-space: nowrap; width: 1%; }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    .bad { color: var(--bad); }
+    button {
+      font-size: 20px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: 0;
+      background: #3b6fd9;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:disabled { background: #444b53; color: #8a9097; cursor: default; }
+    pre {
+      margin: 0;
+      font: 13px/1.35 ui-monospace, monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .cols { display: flex; flex-wrap: wrap; gap: 12px; }
+    .cols > .panel { flex: 1 1 320px; min-width: 0; }
+  </style>
+</head>
+<body>
+  <h1>Quest WebXR Bridge</h1>
+
+  <div class="panel">
+    <table>
+      <tr><td>WebXR immersive-vr</td><td id="xr-status">checking...</td></tr>
+      <tr><td>rosbridge</td><td id="ros-status">-</td></tr>
+      <tr><td>Session</td><td id="session-status">not started</td></tr>
+      <tr><td>Frame rate</td><td id="frame-rate">-</td></tr>
+      <tr><td>Publish rate</td><td id="pub-rate">-</td></tr>
+      <tr><td>Reference space</td><td id="ref-space">-</td></tr>
+      <tr><td>User agent</td><td id="ua" style="word-break: break-all;"></td></tr>
+    </table>
+  </div>
+
+  <p><button id="enter-vr" disabled>Enter VR</button></p>
+  <p style="color: var(--muted); font-size: 14px;">
+    In VR the background color shows the state: dark green = publishing,
+    dark red = rosbridge disconnected, dark yellow = connected but no controller pose.
+  </p>
+
+  <div class="cols">
+    <div class="panel"><h2>Left controller</h2><pre id="diag-left">-</pre></div>
+    <div class="panel"><h2>Right controller</h2><pre id="diag-right">-</pre></div>
+  </div>
+  <div class="panel"><h2>Input sources</h2><pre id="diag-sources">-</pre></div>
+  <div class="panel"><h2>Log</h2><pre id="log"></pre></div>
+
+  <script src="vendor/roslib.min.js"></script>
+  <script src="js/core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

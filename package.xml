@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>quest_webxr_bridge</name>
+  <version>0.1.0</version>
+  <description>Meta Quest (WebXR in the headset browser) to ROS2 bridge that publishes Quest2ROS2-compatible controller topics through rosbridge.</description>
+  <maintainer email="6672969+szmlb@users.noreply.github.com">szmlb</maintainer>
+  <license>Apache-2.0</license>
+
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <!-- OVR2ROSInputs, created from Quest2ROS2/Files_for_msg_pkg (Quest2ROS2 README step 5) -->
+  <depend>quest2ros</depend>
+
+  <exec_depend>rosbridge_server</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
